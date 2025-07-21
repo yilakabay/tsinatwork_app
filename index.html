@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TsinatWork</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(to bottom, #0b8a3d, #fcdd0c);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            color: #0b8a3d;
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .client-btn {
+            background: #0b8a3d;
+            color: white;
+        }
+        .freelancer-btn {
+            background: #fcdd0c;
+            color: #333;
+        }
+        .login-btn {
+            background: #d7282f;
+            color: white;
+        }
+        .flag {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .flag-bar {
+            height: 8px;
+            width: 80px;
+        }
+        .green { background: #0b8a3d; }
+        .yellow { background: #fcdd0c; }
+        .red { background: #d7282f; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Welcome to TsinatWork!</h1>
+        <p>Connecting Talent with Opportunity Across Ethiopia</p>
+        
+        <div class="flag">
+            <div class="flag-bar green"></div>
+            <div class="flag-bar yellow"></div>
+            <div class="flag-bar red"></div>
+        </div>
+        
+        <p>Selam! 🙌 Join Ethiopia's premier freelance marketplace.</p>
+        
+        <button class="btn client-btn">Register as Client</button>
+        <button class="btn freelancer-btn">Register as Freelancer</button>
+        <button class="btn login-btn">Login to Account</button>
+        
+        <p style="margin-top: 30px; font-size: 14px; color: #666;">
+            Secured with Ethiopian banking partners: CBE • Telebirr • Abyssinia
+        </p>
+    </div>
+</body>
+</html>

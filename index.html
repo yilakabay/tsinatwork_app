@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>TsinatWork</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TsinatWork - Client Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
             padding: 20px;
             background: linear-gradient(to bottom, #0b8a3d, #fcdd0c);
@@ -13,19 +21,50 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            color: #333;
         }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
         .card {
             background: white;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
             max-width: 500px;
-            width: 90%;
+            transition: all 0.5s ease;
         }
+        
+        .form-container {
+            display: none;
+        }
+        
         h1 {
             color: #0b8a3d;
             margin-bottom: 10px;
+            font-size: 28px;
         }
+        
+        h2 {
+            color: #0b8a3d;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
         .btn {
             display: block;
             width: 100%;
@@ -37,57 +76,469 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
+            text-align: center;
         }
+        
         .btn:hover {
             transform: scale(1.03);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+        
         .client-btn {
             background: #0b8a3d;
             color: white;
         }
+        
         .freelancer-btn {
             background: #fcdd0c;
             color: #333;
         }
+        
         .login-btn {
             background: #d7282f;
             color: white;
         }
+        
         .flag {
             display: flex;
             justify-content: center;
             margin: 20px 0;
         }
+        
         .flag-bar {
             height: 8px;
             width: 80px;
         }
+        
         .green { background: #0b8a3d; }
         .yellow { background: #fcdd0c; }
         .red { background: #d7282f; }
+        
+        /* Form styling */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #0b8a3d;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #0b8a3d;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(11, 138, 61, 0.2);
+        }
+        
+        .name-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .name-part {
+            flex: 1;
+        }
+        
+        .validation-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+        
+        .valid .validation-icon {
+            background: #0b8a3d;
+            color: white;
+        }
+        
+        .invalid .validation-icon {
+            background: #d7282f;
+            color: white;
+        }
+        
+        .error-message {
+            color: #d7282f;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            margin-top: 10px;
+        }
+        
+        .submit-btn {
+            background: #0b8a3d;
+            color: white;
+            font-size: 18px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+        
+        .user-profile {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .profile-icon {
+            font-size: 64px;
+            color: #0b8a3d;
+            margin-bottom: 20px;
+        }
+        
+        .profile-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .profile-info p {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .profile-info p:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #0b8a3d;
+            display: inline-block;
+            width: 150px;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Welcome to TsinatWork!</h1>
-        <p>Connecting Talent with Opportunity Across Ethiopia</p>
-        
-        <div class="flag">
-            <div class="flag-bar green"></div>
-            <div class="flag-bar yellow"></div>
-            <div class="flag-bar red"></div>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div class="card" id="welcomeScreen">
+            <h1>Welcome to TsinatWork!</h1>
+            <p>Connecting Talent with Opportunity Across Ethiopia</p>
+            
+            <div class="flag">
+                <div class="flag-bar green"></div>
+                <div class="flag-bar yellow"></div>
+                <div class="flag-bar red"></div>
+            </div>
+            
+            <p>Selam! 🙌 Join Ethiopia's premier freelance marketplace.</p>
+            
+            <button class="btn client-btn" id="clientBtn">Register as Client</button>
+            <button class="btn freelancer-btn">Register as Freelancer</button>
+            <button class="btn login-btn">Login to Account</button>
+            
+            <p style="margin-top: 30px; font-size: 14px; color: #666;">
+                Secured with Ethiopian banking partners: CBE • Telebirr • Abyssinia
+            </p>
         </div>
         
-        <p>Selam! 🙌 Join Ethiopia's premier freelance marketplace.</p>
+        <!-- Client Registration Form -->
+        <div class="card form-container" id="clientForm">
+            <div class="flag">
+                <div class="flag-bar green"></div>
+                <div class="flag-bar yellow"></div>
+                <div class="flag-bar red"></div>
+            </div>
+            
+            <h2>Create Client Account</h2>
+            <p>Fill in your details to get started as a client</p>
+            
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="your.email@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Create a strong password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Full Name (Minimum 3 characters each)</label>
+                    <div class="name-group">
+                        <div class="name-part">
+                            <input type="text" id="firstName" placeholder="First Name" minlength="3" required>
+                            <div class="error-message" id="firstNameError">Minimum 3 characters</div>
+                        </div>
+                        <div class="name-part">
+                            <input type="text" id="fatherName" placeholder="Father's Name" minlength="3" required>
+                            <div class="error-message" id="fatherNameError">Minimum 3 characters</div>
+                        </div>
+                    </div>
+                    <div class="name-group">
+                        <div class="name-part">
+                            <input type="text" id="grandfatherName" placeholder="Grandfather's Name" minlength="3" required>
+                            <div class="error-message" id="grandfatherNameError">Minimum 3 characters</div>
+                        </div>
+                        <div class="name-part">
+                            <input type="text" id="familyName" placeholder="Family Name">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="0912345678" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Company Name (Optional)</label>
+                    <input type="text" id="company" placeholder="Your company name">
+                </div>
+                
+                <button type="submit" class="btn submit-btn" id="submitBtn" disabled>
+                    Create Client Account
+                </button>
+                
+                <button type="button" class="btn back-btn" id="backBtn">
+                    <i class="fas fa-arrow-left"></i> Back to Main
+                </button>
+            </form>
+            
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i> Registration successful! Your account has been created.
+            </div>
+        </div>
         
-        <button class="btn client-btn">Register as Client</button>
-        <button class="btn freelancer-btn">Register as Freelancer</button>
-        <button class="btn login-btn">Login to Account</button>
-        
-        <p style="margin-top: 30px; font-size: 14px; color: #666;">
-            Secured with Ethiopian banking partners: CBE • Telebirr • Abyssinia
-        </p>
+        <!-- Profile Preview -->
+        <div class="card user-profile" id="userProfile">
+            <div class="flag">
+                <div class="flag-bar green"></div>
+                <div class="flag-bar yellow"></div>
+                <div class="flag-bar red"></div>
+            </div>
+            
+            <div class="profile-icon">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            
+            <h2>Welcome, <span id="profileName"></span>!</h2>
+            <p>Your client account has been successfully created</p>
+            
+            <div class="profile-info">
+                <p><span class="info-label">Full Name:</span> <span id="profileFullName"></span></p>
+                <p><span class="info-label">Email:</span> <span id="profileEmail"></span></p>
+                <p><span class="info-label">Phone:</span> <span id="profilePhone"></span></p>
+                <p><span class="info-label">Company:</span> <span id="profileCompany"></span></p>
+                <p><span class="info-label">Account Type:</span> Client</p>
+            </div>
+            
+            <button class="btn client-btn" id="startProjectBtn">
+                <i class="fas fa-rocket"></i> Start Your First Project
+            </button>
+            
+            <button class="btn back-btn" id="profileBackBtn">
+                <i class="fas fa-home"></i> Return to Home
+            </button>
+        </div>
     </div>
+
+    <script>
+        // DOM Elements
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const clientForm = document.getElementById('clientForm');
+        const userProfile = document.getElementById('userProfile');
+        const clientBtn = document.getElementById('clientBtn');
+        const backBtn = document.getElementById('backBtn');
+        const profileBackBtn = document.getElementById('profileBackBtn');
+        const startProjectBtn = document.getElementById('startProjectBtn');
+        const registrationForm = document.getElementById('registrationForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        
+        // Name fields
+        const firstName = document.getElementById('firstName');
+        const fatherName = document.getElementById('fatherName');
+        const grandfatherName = document.getElementById('grandfatherName');
+        const familyName = document.getElementById('familyName');
+        
+        // Error messages
+        const firstNameError = document.getElementById('firstNameError');
+        const fatherNameError = document.getElementById('fatherNameError');
+        const grandfatherNameError = document.getElementById('grandfatherNameError');
+        
+        // Profile elements
+        const profileName = document.getElementById('profileName');
+        const profileFullName = document.getElementById('profileFullName');
+        const profileEmail = document.getElementById('profileEmail');
+        const profilePhone = document.getElementById('profilePhone');
+        const profileCompany = document.getElementById('profileCompany');
+        
+        // Show client registration form
+        clientBtn.addEventListener('click', () => {
+            welcomeScreen.style.display = 'none';
+            clientForm.style.display = 'block';
+        });
+        
+        // Back to welcome screen
+        backBtn.addEventListener('click', () => {
+            clientForm.style.display = 'none';
+            welcomeScreen.style.display = 'block';
+            resetForm();
+        });
+        
+        // Back to welcome from profile
+        profileBackBtn.addEventListener('click', () => {
+            userProfile.style.display = 'none';
+            welcomeScreen.style.display = 'block';
+            resetForm();
+        });
+        
+        // Start project button
+        startProjectBtn.addEventListener('click', () => {
+            alert('Project creation feature will be implemented soon!');
+        });
+        
+        // Reset form function
+        function resetForm() {
+            registrationForm.reset();
+            successMessage.style.display = 'none';
+            submitBtn.disabled = true;
+            
+            // Reset error messages
+            firstNameError.style.display = 'none';
+            fatherNameError.style.display = 'none';
+            grandfatherNameError.style.display = 'none';
+        }
+        
+        // Real-time validation for name fields
+        function validateNameField(field, errorElement) {
+            if (field.value.length > 0 && field.value.length < 3) {
+                errorElement.style.display = 'block';
+                return false;
+            } else {
+                errorElement.style.display = 'none';
+                return true;
+            }
+        }
+        
+        // Validate entire form
+        function validateForm() {
+            const firstNameValid = validateNameField(firstName, firstNameError);
+            const fatherNameValid = validateNameField(fatherName, fatherNameError);
+            const grandfatherNameValid = validateNameField(grandfatherName, grandfatherNameError);
+            
+            const emailValid = document.getElementById('email').checkValidity();
+            const passwordValid = document.getElementById('password').value.length >= 6;
+            const phoneValid = document.getElementById('phone').checkValidity();
+            
+            return firstNameValid && fatherNameValid && grandfatherNameValid && 
+                   emailValid && passwordValid && phoneValid;
+        }
+        
+        // Event listeners for validation
+        firstName.addEventListener('input', () => {
+            validateNameField(firstName, firstNameError);
+            submitBtn.disabled = !validateForm();
+        });
+        
+        fatherName.addEventListener('input', () => {
+            validateNameField(fatherName, fatherNameError);
+            submitBtn.disabled = !validateForm();
+        });
+        
+        grandfatherName.addEventListener('input', () => {
+            validateNameField(grandfatherName, grandfatherNameError);
+            submitBtn.disabled = !validateForm();
+        });
+        
+        // Add validation to other fields
+        document.getElementById('email').addEventListener('input', () => {
+            submitBtn.disabled = !validateForm();
+        });
+        
+        document.getElementById('password').addEventListener('input', () => {
+            submitBtn.disabled = !validateForm();
+        });
+        
+        document.getElementById('phone').addEventListener('input', () => {
+            submitBtn.disabled = !validateForm();
+        });
+        
+        // Form submission
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (validateForm()) {
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    
+                    // Update profile preview
+                    const fullName = `${firstName.value} ${fatherName.value} ${grandfatherName.value} ${familyName.value ? familyName.value : ''}`;
+                    profileName.textContent = firstName.value;
+                    profileFullName.textContent = fullName;
+                    profileEmail.textContent = document.getElementById('email').value;
+                    profilePhone.textContent = document.getElementById('phone').value;
+                    profileCompany.textContent = document.getElementById('company').value || 'Not provided';
+                    
+                    // Move to profile screen after delay
+                    setTimeout(() => {
+                        clientForm.style.display = 'none';
+                        userProfile.style.display = 'block';
+                        submitBtn.innerHTML = 'Create Client Account';
+                    }, 1500);
+                }, 2000);
+            }
+        });
+        
+        // Ethiopian phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                value = value.match(/.{1,3}/g).join(' ');
+            }
+            e.target.value = value;
+        });
+    </script>
 </body>
 </html>
